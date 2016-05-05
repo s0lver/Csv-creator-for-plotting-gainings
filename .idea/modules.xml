@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Csv-creator-for-plotting-gainings.iml" filepath="$PROJECT_DIR$/Csv-creator-for-plotting-gainings.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CsvCreator/CsvCreator.iml" filepath="$PROJECT_DIR$/CsvCreator/CsvCreator.iml" />
+    </modules>
+  </component>
+</project>

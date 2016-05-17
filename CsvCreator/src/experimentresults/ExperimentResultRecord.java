@@ -1,7 +1,9 @@
+package experimentresults;
+
 import java.util.Comparator;
 import java.util.Date;
 
-public class RowInFile implements Comparable<RowInFile> {
+public class ExperimentResultRecord implements Comparable<ExperimentResultRecord> {
     private boolean isFromLocalPhone;
     private double latitude;
     private double longitude;
@@ -15,7 +17,7 @@ public class RowInFile implements Comparable<RowInFile> {
     private int batteryTemperature;
     private String batteryConnected;
 
-    public RowInFile(boolean isFromLocalPhone, double latitude, double longitude, double altitude, double accuracy, double speed, Date timestamp, double batteryLevel, int batteryVoltage, String batteryStatus, int batteryTemperature, String batteryConnected) {
+    public ExperimentResultRecord(boolean isFromLocalPhone, double latitude, double longitude, double altitude, double accuracy, double speed, Date timestamp, double batteryLevel, int batteryVoltage, String batteryStatus, int batteryTemperature, String batteryConnected) {
         this.isFromLocalPhone = isFromLocalPhone;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -144,7 +146,7 @@ public class RowInFile implements Comparable<RowInFile> {
     }
 
     @Override
-    public int compareTo(RowInFile rowToCompare) {
+    public int compareTo(ExperimentResultRecord rowToCompare) {
         Date timeToCompare = rowToCompare.getTimestamp();
 
         long comparison = this.getTimestamp().getTime() - timeToCompare.getTime();
@@ -153,10 +155,10 @@ public class RowInFile implements Comparable<RowInFile> {
         else return 0;
     }
 
-    public static Comparator<RowInFile> RowsComparator = new Comparator<RowInFile>() {
+    public static Comparator<ExperimentResultRecord> RowsComparator = new Comparator<ExperimentResultRecord>() {
 
         @Override
-        public int compare(RowInFile row1, RowInFile row2) {
+        public int compare(ExperimentResultRecord row1, ExperimentResultRecord row2) {
             long comparison = row1.getTimestamp().getTime() - row2.getTimestamp().getTime();
 
             if (comparison > 0) {

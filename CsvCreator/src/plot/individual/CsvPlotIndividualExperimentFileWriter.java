@@ -1,14 +1,16 @@
+package plot.individual;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
-public class CsvForPlottingWriter {
+public class CsvPlotIndividualExperimentFileWriter {
     private File file;
     private Date originTime;
 
-    public CsvForPlottingWriter(String filepath, Date originTime) throws IOException {
+    public CsvPlotIndividualExperimentFileWriter(String filepath, Date originTime) throws IOException {
         this.file = new File(filepath);
         this.originTime = originTime;
         writeHeader();
@@ -26,8 +28,8 @@ public class CsvForPlottingWriter {
         printWriter.close();
     }
 
-    public void writeRecord(RowInCsvPlotFile rowInCsvPlotFile) throws IOException {
-        String lineToWrite = rowInCsvPlotFile.toCsvString(originTime);
+    public void writeRecord(CsvPlotIndividualExperimentRecord csvPlotIndividualExperimentRecord) throws IOException {
+        String lineToWrite = csvPlotIndividualExperimentRecord.toCsvString(originTime);
         writeLine(lineToWrite);
     }
 }

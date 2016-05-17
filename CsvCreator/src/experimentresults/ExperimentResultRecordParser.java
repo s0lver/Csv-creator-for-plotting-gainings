@@ -1,9 +1,11 @@
+package experimentresults;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class YetAnotherParser {
+public class ExperimentResultRecordParser {
     private String lineToParse;
     private boolean isFromLocalPhone;
 
@@ -22,12 +24,12 @@ public class YetAnotherParser {
     private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
 
 
-    public YetAnotherParser(String lineToParse, boolean isFromLocalPhone) {
+    public ExperimentResultRecordParser(String lineToParse, boolean isFromLocalPhone) {
         this.lineToParse = lineToParse;
         this.isFromLocalPhone = isFromLocalPhone;
     }
 
-    public RowInFile parseLine() throws ParseException {
+    public ExperimentResultRecord parseLine() throws ParseException {
         // We do not care if it was obtained or not, we care about battery level
         String[] lineDivided = lineToParse.split(",");
         double latitude = Double.valueOf(lineDivided[COLUMN_LATITUDE]);
@@ -42,7 +44,7 @@ public class YetAnotherParser {
         int batteryTemperature = Integer.valueOf(lineDivided[COLUMN_BATTERY_TEMPERATURE]);
         String batteryConnected = lineDivided[COLUMN_BATTERY_CONNECTED];
 
-        return new RowInFile(isFromLocalPhone, latitude, longitude, altitude, accuracy, speed,
+        return new ExperimentResultRecord(isFromLocalPhone, latitude, longitude, altitude, accuracy, speed,
                 timestamp, batteryLevel, batteryVoltage, batteryStatus, batteryTemperature, batteryConnected);
 
     }

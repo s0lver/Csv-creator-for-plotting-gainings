@@ -1,59 +1,56 @@
-import experimentresults.ExperimentResultFileReader;
-import experimentresults.ExperimentResultRecord;
-import experimentresults.ExperimentResultRecordSorter;
-import plot.individual.CsvPlotIndividualExperimentFileWriter;
-import plot.individual.CsvPlotIndividualExperimentRecord;
-
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class Main {
+    static String[] summarizedPaths = new String[] {
+            "c:\\users\\rafael\\desktop\\summarized-30.csv",
+            "c:\\users\\rafael\\desktop\\summarized-60.csv"
+    };
+
     public static void main(String[] args) throws IOException, ParseException {
-        processIndividualExperiments();
+//        processIndividualExperiments();
         processExperimentsGlobally();
     }
 
-    private static void processExperimentsGlobally() {
-        // TODO follow the algorithm
+    private static void processExperimentsGlobally() throws IOException, ParseException {
+        String outputFilePath = "c:\\users\\rafael\\desktop\\global-file.csv";
+        GlobalProcessor globalProcessor = new GlobalProcessor(summarizedPaths, outputFilePath);
+        globalProcessor.readFiles();
+        globalProcessor.mergeContents();
+        globalProcessor.sortRecords();
+        globalProcessor.generateFile();
     }
 
     private static void processIndividualExperiments() throws IOException, ParseException {
-        String fileLocal = "CsvCreator/input/records-local.csv";
-        String fileRemote = "CsvCreator/input/records-remote.csv";
 
-        ExperimentResultFileReader processorLocal = new ExperimentResultFileReader(fileLocal, true);
-        ExperimentResultFileReader processorRemote = new ExperimentResultFileReader(fileRemote, false);
+        String[] localFilePaths = new String[]{
+                "CsvCreator/input/records-local-30.csv",
+                "CsvCreator/input/records-local-60.csv"
+        };
 
-        ArrayList<ExperimentResultRecord> localReadings = processorLocal.readFile();
-        ArrayList<ExperimentResultRecord> remoteReadings = processorRemote.readFile();
+        String[] remoteFilesPaths = new String[]{
+                "CsvCreator/input/records-remote-30.csv",
+                "CsvCreator/input/records-remote-60.csv"
+        };
 
-        // TODO append the trailing 0 level record to the remote file here
 
-        ArrayList<ExperimentResultRecord> mergedReadings = new ArrayList<>();
-        mergedReadings.addAll(localReadings);
-        mergedReadings.addAll(remoteReadings);
 
-        ExperimentResultRecordSorter sorter = new ExperimentResultRecordSorter(mergedReadings);
-        ArrayList<ExperimentResultRecord> sortedReadings = sorter.sortCollection();
+        long init = System.currentTimeMillis();
 
-        double currentBatteryLevelLocal = 1;
-        double currentBatteryLevelRemote = 1;
+        for (int i = 0; i < localFilePaths.length; i++) {
+            IndividualExperimentProcessor individualExperimentProcessor =
+                    new IndividualExperimentProcessor(localFilePaths[i], remoteFilesPaths[i], summarizedPaths[i]);
 
-        Date originTime = sortedReadings.get(0).getTimestamp();
-        CsvPlotIndividualExperimentFileWriter writer = new CsvPlotIndividualExperimentFileWriter("c:\\users\\rafael\\desktop\\csvForPlotting.csv", originTime);
+            individualExperimentProcessor.readFiles();
+            individualExperimentProcessor.mergeContents();
+            individualExperimentProcessor.sortReadings();
+            individualExperimentProcessor.generateFile();
 
-        for (int i = 0; i < sortedReadings.size(); i++) {
-            ExperimentResultRecord currentReading = sortedReadings.get(i);
-            if (currentReading.isFromLocalPhone())
-                currentBatteryLevelLocal = currentReading.getBatteryLevel();
-            else
-                currentBatteryLevelRemote = currentReading.getBatteryLevel();
-
-            CsvPlotIndividualExperimentRecord rowToWrite = new CsvPlotIndividualExperimentRecord(currentReading.getTimestamp(), currentBatteryLevelLocal, currentBatteryLevelRemote);
-
-            writer.writeRecord(rowToWrite);
+            System.out.println("Files " + localFilePaths[i] + ", " + remoteFilesPaths[i] + " processed");
         }
+
+        long end = System.currentTimeMillis();
+
+        System.out.println("elapsed = " + (end - init));
     }
 }

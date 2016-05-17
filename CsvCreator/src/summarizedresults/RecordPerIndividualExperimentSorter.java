@@ -1,4 +1,4 @@
-package plot.global;
+package summarizedresults;
 
 import experimentresults.ExperimentResultRecord;
 

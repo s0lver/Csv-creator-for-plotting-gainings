@@ -1,4 +1,4 @@
-package plot.global;
+package summarizedresults;
 
 import java.util.Comparator;
 
@@ -7,6 +7,22 @@ public class RecordPerIndividualExperiment{
     private long deltaTimestamp;
     private double batteryLevelLocalSmartphone;
     private double batteryLevelRemoteSmartphone;
+
+    public int getType() {
+        return type;
+    }
+
+    public long getDeltaTimestamp() {
+        return deltaTimestamp;
+    }
+
+    public double getBatteryLevelLocalSmartphone() {
+        return batteryLevelLocalSmartphone;
+    }
+
+    public double getBatteryLevelRemoteSmartphone() {
+        return batteryLevelRemoteSmartphone;
+    }
 
     public RecordPerIndividualExperiment(int type, long deltaTimestamp, double batteryLevelLocalSmartphone, double batteryLevelRemoteSmartphone) {
         this.type = type;
@@ -29,4 +45,9 @@ public class RecordPerIndividualExperiment{
             }
         }
     };
+
+    @Override
+    public String toString() {
+        return type + "," + deltaTimestamp + "," + batteryLevelLocalSmartphone + "," + batteryLevelRemoteSmartphone;
+    }
 }

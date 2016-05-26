@@ -64,6 +64,7 @@ public class GlobalProcessor {
             String lineToWrite = buildStringToWrite(deltaTime, localBatteryLevels, remoteBatteryLevels);
             writer.writeLine(lineToWrite);
         }
+        writer.closeWriter();
     }
 
     private String buildStringToWrite(long deltaTime, double[] localBatteryLevels, double[] remoteBatteryLevels) {

@@ -7,14 +7,17 @@ import java.io.PrintWriter;
 
 public class CsvPlotGlobalExperimentFileWriter {
     private File file;
+    PrintWriter printWriter;
 
     public CsvPlotGlobalExperimentFileWriter(String filePath, int amountExperiments) throws IOException {
         this.file = new File(filePath);
         writeHeader(amountExperiments);
+         printWriter = new PrintWriter(new FileWriter(file, true));
     }
 
     private void writeHeader(int amountExperiments) throws IOException {
-        PrintWriter printWriter = new PrintWriter(new FileWriter(file, false));
+//        PrintWriter printWriter = new PrintWriter(new FileWriter(file, false));
+        PrintWriter printWriter = new PrintWriter(new FileWriter(file, true));
         StringBuilder sb = new StringBuilder();
 
         sb.append("deltaTime");
@@ -25,13 +28,15 @@ public class CsvPlotGlobalExperimentFileWriter {
             sb.append("Period" + i + "-remote");
         }
 
-        writeLine(sb.toString());
+        printWriter.println(sb.toString());
+        printWriter.close();
+    }
+
+    public void closeWriter() {
         printWriter.close();
     }
 
     public void writeLine(String line) throws IOException {
-        PrintWriter printWriter = new PrintWriter(new FileWriter(file, true));
         printWriter.println(line);
-        printWriter.close();
     }
 }

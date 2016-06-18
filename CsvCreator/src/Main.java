@@ -6,12 +6,13 @@ public class Main {
             "c:\\users\\rafael\\desktop\\summarized-30.csv",
             "c:\\users\\rafael\\desktop\\summarized-60.csv",
             "c:\\users\\rafael\\desktop\\summarized-90.csv",
-            "c:\\users\\rafael\\desktop\\summarized-120.csv"
+            "c:\\users\\rafael\\desktop\\summarized-120.csv",
+            "c:\\users\\rafael\\desktop\\summarized-150.csv",
     };
 
     public static void main(String[] args) throws IOException, ParseException {
-//        processIndividualExperiments();
-        processExperimentsGlobally();
+        processIndividualExperiments();
+//        processExperimentsGlobally();
     }
 
     private static void processExperimentsGlobally() throws IOException, ParseException {
@@ -25,18 +26,36 @@ public class Main {
 
     private static void processIndividualExperiments() throws IOException, ParseException {
 
+//        String[] localFilePaths = new String[]{
+//                "CsvCreator/input/r1-records-local-30.csv",
+//                "CsvCreator/input/r1-records-local-60.csv",
+//                "CsvCreator/input/r1-records-local-90.csv",
+//                "CsvCreator/input/r1-records-local-120.csv",
+//                "CsvCreator/input/r1-records-local-150.csv",
+//        };
+//
+//        String[] remoteFilesPaths = new String[]{
+//                "CsvCreator/input/r1-records-remote-30.csv",
+//                "CsvCreator/input/r1-records-remote-60.csv",
+//                "CsvCreator/input/r1-records-remote-90.csv",
+//                "CsvCreator/input/r1-records-remote-120.csv",
+//                "CsvCreator/input/r1-records-remote-150.csv",
+//        };
+
         String[] localFilePaths = new String[]{
-//                "CsvCreator/input/records-local-30.csv",
-//                "CsvCreator/input/records-local-60.csv",
-//                "CsvCreator/input/records-local-90.csv",
-                "CsvCreator/input/records-local-120.csv",
+                "CsvCreator/input/r2-records-local-30.csv",
+//                "CsvCreator/input/r2-records-local-60.csv",
+//                "CsvCreator/input/r2-records-local-90.csv",
+//                "CsvCreator/input/r2-records-local-120.csv",
+//                "CsvCreator/input/r2-records-local-150.csv",
         };
 
         String[] remoteFilesPaths = new String[]{
-//                "CsvCreator/input/records-remote-30.csv",
-//                "CsvCreator/input/records-remote-60.csv",
-//                "CsvCreator/input/records-remote-90.csv",
-                "CsvCreator/input/records-remote-120.csv",
+                "CsvCreator/input/r2-records-remote-30.csv",
+//                "CsvCreator/input/r2-records-remote-60.csv",
+//                "CsvCreator/input/r2-records-remote-90.csv",
+//                "CsvCreator/input/r2-records-remote-120.csv",
+//                "CsvCreator/input/r2-records-remote-150.csv",
         };
 
         long init = System.currentTimeMillis();

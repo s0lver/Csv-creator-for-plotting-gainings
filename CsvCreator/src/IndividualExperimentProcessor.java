@@ -71,5 +71,7 @@ public class IndividualExperimentProcessor {
         CsvPlotIndividualExperimentRecord lastRow = new CsvPlotIndividualExperimentRecord(
                 currentReading.getTimestamp(), 0, 0);
         writer.writeRecord(lastRow);
+
+        writer.closeWriter();
     }
 }

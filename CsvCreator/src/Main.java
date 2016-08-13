@@ -8,6 +8,7 @@ public class Main {
             "c:\\users\\rafael\\desktop\\summarized-90.csv",
             "c:\\users\\rafael\\desktop\\summarized-120.csv",
             "c:\\users\\rafael\\desktop\\summarized-150.csv",
+            "c:\\users\\rafael\\desktop\\summarized-180.csv",
     };
 
     public static void main(String[] args) throws IOException, ParseException {
@@ -48,6 +49,7 @@ public class Main {
                 "CsvCreator/input/r2-records-local-90.csv",
                 "CsvCreator/input/r2-records-local-120.csv",
                 "CsvCreator/input/r2-records-local-150.csv",
+                "CsvCreator/input/r2-records-local-180.csv",
         };
 
         String[] remoteFilesPaths = new String[]{
@@ -56,6 +58,7 @@ public class Main {
                 "CsvCreator/input/r2-records-remote-90.csv",
                 "CsvCreator/input/r2-records-remote-120.csv",
                 "CsvCreator/input/r2-records-remote-150.csv",
+                "CsvCreator/input/r2-records-remote-180.csv",
         };
 
         long init = System.currentTimeMillis();
